@@ -4,7 +4,8 @@
             [ring.mock.request :as mock]))
 
 (deftest simple-get-test
-  (is (= (core/handler (mock/request :get "/"))
-         {:status 200
-          :headers {"Content-Type" "text/html"}
-          :body "Hello World"})))
+  (testing "simple get"
+    (let [response (core/app (mock/request :get "/"))]
+      (is (= "Hello World" (response :body))
+          (= 200 (response :status))
+          ))))

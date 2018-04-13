@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [ring/ring-core "1.6.3"]
                  [ring/ring-mock "0.3.2"]
+                 [compojure "1.6.0"]
                  [ring/ring-jetty-adapter "1.6.3"]]
   :ring {:handler tdd-clj.core/handler}
   :plugins [[lein-ring "0.12.1"]
