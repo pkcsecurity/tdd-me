@@ -1,4 +1,4 @@
-(ns tdd-clj.backend)
+(ns tdd-clj.clj.backend)
 
 (defn square [n] (* n n))
 

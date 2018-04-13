@@ -1,8 +1,8 @@
-(ns tdd-clj.core
+(ns tdd-clj.clj.core
   (:require [compojure.core :refer :all]
             [clojure.data.json :as json]
             [ring.util.codec :refer [form-decode]]
-            [tdd-clj.backend :refer [square]]
+            [tdd-clj.clj.backend :refer [square]]
             [compojure.route :as route]))
 
 (defn handle-post [req]

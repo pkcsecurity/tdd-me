@@ -1,6 +1,6 @@
-(ns tdd-clj.core-test
+(ns tdd-clj.clj.core-test
   (:require [clojure.test :refer :all]
-            [tdd-clj.core :as core]
+            [tdd-clj.clj.core :as core]
             [clojure.data.json :as json]
             [ring.mock.request :as mock]))
 
