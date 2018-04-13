@@ -4,6 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/clojurescript "1.10.238"]
                  [ring/ring-core "1.6.3"]
                  [ring/ring-mock "0.3.2"]
                  [compojure "1.6.0"]
@@ -11,4 +12,13 @@
                  [ring/ring-jetty-adapter "1.6.3"]]
   :ring {:handler tdd-clj.core/app}
   :plugins [[lein-ring "0.12.1"]
-            [lein-auto "0.1.3"]])
+            [lein-auto "0.1.3"]
+            [lein-figwheel "0.5.15"]]
+  :clean-targets [:target-path "out/cljs"]
+  :cljsbuild {
+              :builds [{:id "dev"
+                        :source-paths ["src/tdd_clj/cljs"]
+                        :figwheel true
+                        :compiler {:main "tdd-clj.cljs.core"}}]
+              }
+  )
