@@ -1,16 +1,13 @@
 (ns tdd-clj.core
   (:require [compojure.core :refer :all]
-            [cheshire.core :as cheshire]
+            [clojure.data.json :as json]
+            [ring.util.codec :refer [form-decode]]
             [tdd-clj.backend :refer [square]]
             [compojure.route :as route]))
 
-(defn parse-body [body]
-  (cheshire/parse-string (slurp body) true))
-
-(defn handle-post [body]
-  (if body
-    {:body (merge {:received? true} (parse-body body))}
-    "No params. That's OK"))
+(defn handle-post [req]
+  (let [{:keys [query-string]} req]
+    (json/write-str (merge {:received? true} (form-decode query-string)))))
 
 (defn handle-home [] "Hello World")
 
@@ -20,5 +17,5 @@
 (defroutes app
   (GET "/" [] (handle-home))
   (GET "/square/:num" {:keys [params]} (handle-square params))
-  (POST "/posthere" {:keys [body]} (handle-post body))
+  (POST "/posthere" req (handle-post req))
   (route/not-found "Page Not Found"))

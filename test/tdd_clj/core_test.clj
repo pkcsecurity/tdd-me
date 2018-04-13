@@ -1,7 +1,7 @@
 (ns tdd-clj.core-test
   (:require [clojure.test :refer :all]
             [tdd-clj.core :as core]
-            [cheshire.core :as cheshire]
+            [clojure.data.json :as json]
             [ring.mock.request :as mock]))
 
 (deftest simple-get-test
@@ -17,11 +17,11 @@
 (deftest simple-post-test
   (testing "simple post with params"
     (let [params {:param1 "one one" :another 7}
-          response (core/app
-                    (-> (mock/request :post "/posthere" )
-                        (mock/content-type "application/json")
-                        (mock/body (cheshire/generate-string params))))]
-      (is (= true (get-in response [:body :received?])))
+          request (-> (mock/request :post "/posthere" )
+                      (mock/content-type "application/json")
+                      (mock/query-string {:param1 "one one" :another 7}))
+          response (core/app request)]
+      (is (= true ((json/read-str (:body response)) "received?")))
       (= 200 (response :status)))))
 
 (deftest not-found-test

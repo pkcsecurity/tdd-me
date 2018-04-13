@@ -7,7 +7,8 @@
                  [ring/ring-core "1.6.3"]
                  [ring/ring-mock "0.3.2"]
                  [compojure "1.6.0"]
+                 [org.clojure/data.json "0.2.6"]
                  [ring/ring-jetty-adapter "1.6.3"]]
-  :ring {:handler tdd-clj.core/handler}
+  :ring {:handler tdd-clj.core/app}
   :plugins [[lein-ring "0.12.1"]
             [lein-auto "0.1.3"]])
