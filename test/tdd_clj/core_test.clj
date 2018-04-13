@@ -9,9 +9,9 @@
     (let [response (core/app (mock/request :get "/"))]
       (is (= "Hello World" (response :body))
           (= 200 (response :status)))))
-  (testing "simple get with query string"
-    (let [response (core/app (mock/request :get "/" {:hi "ok"}))]
-      (is (= "Hello query string:hi=ok" (response :body))
+  (testing "simple get with params"
+    (let [response (core/app (mock/request :get "/square/5"))]
+      (is (= "Square is 25" (response :body))
           (= 200 (response :status))))))
 
 (deftest simple-post-test
