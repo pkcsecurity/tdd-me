@@ -14,6 +14,7 @@
       (is (= "Square is 25" (response :body))
           (= 200 (response :status))))))
 
+
 (deftest simple-post-test
   (testing "simple post with params"
     (let [params {:param1 "one one" :another 7}
